@@ -1,0 +1,270 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera AR Visit KL | Novanetwork</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="an Augmented Reality Experience for Visit KL, Scan and take a photo with KL landmarks">
+    <meta name="Access-Control-Allow-Origin" content="*">
+    <link rel="shortcut icon" href="assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="assets/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/manifest.json">
+
+    <!-- OpenGraph Meta -->
+    <meta property="og:description" content="an Augmented Reality Experience for Visit KL, Scan and take a photo with KL landmarks">
+    <meta property="og:title" content="AR Visit KL | Novanetwork">
+    <meta property="og:locale" content="my">
+    <meta property="og:url" content="https://novanetwork.tech/camera">
+    <meta property="og:image" content="assets/icons/android-icon-192x192.png">
+    <meta property="og:image:height" content="192">
+    <meta property="og:image:width" content="192">
+    <meta property="og:image:type" content="image/webp">
+
+    <style>
+      #background{
+        display:block;
+        position:fixed;
+        z-index: 99;
+        width:100%;
+        height:100%;
+        background-color: #5b0000;
+        background: -webkit-radial-gradient(center, ellipse cover, #5b0000 1%,#0d0011 100%);
+        background: -moz-radial-gradient(center, ellipse cover, #5b0000 1%,#0d0011 100%);
+        background: -ie-radial-gradient(center, ellipse cover, #5b0000 1%,#0d0011 100%);
+      }
+
+      #logocontainer{
+        display:block;
+        position:fixed;
+        z-index: 100;
+        top:50%;
+        left:50%;
+        width:15vh;
+        height:15vh;
+        margin-left:-7.5vh;
+        margin-top:-7.5vh;
+        overflow:hidden;
+        transition:background-color 500ms;
+        cursor:pointer;
+      }
+
+      #pelogo{
+        display: block;
+        position: absolute;
+        left: 1.5vh;
+        top: 1.5vh;
+        width: 12vh;
+        height: 12vh;
+        background-size: contain;
+        font-family: Trebuchet MS, sans-serif;
+        font-size: 12vh;
+        font-weight: bold;
+        color: #fae43e;
+        text-align: center;
+        line-height: 12vh;
+      }
+
+      .loader{
+        display:block;
+        position:absolute;
+        background-color:#fae43e;
+      }
+
+      /*Pretty complex animation, so each side needs its own @keyframes.*/
+
+      @keyframes slide1{
+        50%{width:14vh; margin-left:0;}
+        100%{margin-left:14vh;}
+      }
+
+      @keyframes slide2{
+        50%{height:14vh; margin-top:0;}
+        100%{margin-top:14vh;}
+      }
+
+      @keyframes slide3{
+        50%{width:14vh; margin-right:0;}
+        100%{margin-right:14vh;}
+      }
+
+      @keyframes slide4{
+        50%{height:14vh; margin-bottom:0}
+        100%{margin-bottom:14vh;}
+      }
+
+    </style>
+
+    <style>
+      html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
+      #capture {
+        position: fixed;
+        bottom: 3vh;
+        left: 48%;
+        height: 4rem;
+        width: 4rem;
+        transform: translateX(-50%);
+        z-index: 10;
+      }
+
+      #record {
+        position: fixed;
+        bottom: 2vh;
+        left: 62.5%;
+        height: 4rem;
+        width: 4rem;
+        z-index: 10;
+      }
+
+      #stop {
+        display: none;
+        position: fixed;
+        bottom: 2vh;
+        left: 62.5%;
+        height: 4rem;
+        width: 4rem;
+        z-index: 10;
+      }
+
+
+      #visitkl-link {
+        position: fixed;
+        bottom: 3vh;
+        right: 3vh;
+        z-index: 10;
+        right: 2vh;
+      }
+
+      #visitkl-link img {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      #cats-link {
+        position: fixed;
+        bottom: 6.5rem;
+        right: 3vh;
+        z-index: 10;
+        right: 2vh;
+      }
+
+      #cats-link img {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      #sound-on {
+        display: none;
+        position: fixed;
+        top: 2vh;
+        left: 2vh;
+        height: 2rem;
+        z-index: 10;
+      }
+
+      #sound-on img {
+        height: 4rem;
+      }
+
+      #sound-off {
+        display: none;
+        position: fixed;
+        top: 2vh;
+        left: 2vh;
+        height: 2rem;
+        z-index: 10;
+      }
+
+      #sound-off img {
+        height: 4rem;
+      }
+
+      #refresh {
+        position: fixed;
+        bottom: 3vh;
+        left: 3vh;
+        z-index: 10;
+        height: 4rem;
+      }
+
+      #refresh img {
+        height: 4rem;
+      }
+    </style>
+
+    <script>
+
+      var full=false;
+
+      function fill(){
+        full=!full;
+        document.getElementById("logocontainer").style.backgroundColor=full?"#fae43e":"transparent";
+      }
+
+      setTimeout(() => {
+        document.getElementById('logocontainer').style.display = 'none';
+        document.getElementById('background').style.display = 'none';
+      }, 3000);
+
+    </script>
+    <script src='https://unpkg.com/@ffmpeg/ffmpeg@0.9.3/dist/ffmpeg.min.js'></script>
+    <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"> </script>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="./libs/mindar/mindar-image-three.prod.js"></script>
+    <script src="./assets/rtc.js" type="module"></script>
+    <style>
+      html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
+    </style>
+  </head>
+  <body>
+    <div id="background"></div>
+    <div id="logocontainer" onclick=fill()>
+      <div id="pelogo">
+        <img src="assets/icons/android-icon-192x192.png" alt="logo" style="width: 100%; height: 100%;">
+      </div>
+      <div class="loader" style="left:1vh; top:0; height:1vh; width:0; animation:slide1 1s linear forwards infinite"></div>
+      <div class="loader" style="right:0; top:1vh; width:1vh; height:0; animation:slide2 1s linear forwards infinite; animation-delay:0.5s"></div>
+      <div class="loader" style="right:1vh; bottom:0; height:1vh; width:0; animation:slide3 1s linear forwards infinite"></div>
+      <div class="loader" style="left:0; bottom:1vh; width:1vh; height:0; animation:slide4 1s linear forwards infinite; animation-delay:0.5s"></div>
+    </div>
+    <div id="loading-container">
+
+    </div>
+    <div id="sound-on">
+      <img src="assets/img/sound-on.png" alt="sound-on">
+    </div>
+    <div id="sound-off">
+      <img src="assets/img/sound-off.png" alt="sound-off">
+    </div>
+    <div id="capture">
+      <img src="assets/img/btn-snap.png" alt="capture">
+    </div>
+    <div id="record">
+      <img src="assets/img/btn-record.png" alt="record">
+    </div>
+    <div id="stop">
+      <img src="assets/img/btn-stop.png" alt="stop">
+    </div>
+    <div id="refresh">
+      <img src="assets/img/refresh.png" alt="refresh">
+    </div>
+    
+    <a href="https://visitkl.dbkl.gov.my/" target="_blank" id="visitkl-link">
+      <img src="assets/img/icon-web.png" alt="download">
+    </a>
+    <a href="https://heyzine.com/flip-book/1eb3cd3638.html" target="_blank" id="cats-link">
+      <img src="assets/img/icon-cats.png" alt="download">
+    </a>
+  </body>
+</html>

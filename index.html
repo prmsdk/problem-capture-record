@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera AR Visit KL | Novanetwork</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="an Augmented Reality Experience for Visit KL, Scan and take a photo with KL landmarks">
+    <link rel="shortcut icon" href="assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="assets/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/manifest.json">
+
+    <!-- OpenGraph Meta -->
+    <meta property="og:description" content="an Augmented Reality Experience for Visit KL, Scan and take a photo with KL landmarks">
+    <meta property="og:title" content="AR Visit KL | Novanetwork">
+    <meta property="og:locale" content="my">
+    <meta property="og:url" content="https://novanetwork.tech/camera">
+    <meta property="og:image" content="assets/icons/android-icon-192x192.png">
+    <meta property="og:image:height" content="192">
+    <meta property="og:image:width" content="192">
+    <meta property="og:image:type" content="image/webp">
+
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@latest"></script>
+
+    <style>
+      #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-image: url('assets/img/bg-baru.png');
+      }
+
+      #camera {
+        position: fixed;
+
+        bottom: 3vh;
+        left: 27.5%;
+        z-index: 10;
+      }
+
+      #camera img {
+        width: 4rem;
+      }
+
+      #visitkl-link {
+        position: fixed;
+        bottom: 3vh;
+        left: 45%;
+        z-index: 10;
+      }
+
+      #visitkl-link img {
+        width: 4rem;
+      }
+
+      #cats-link {
+        position: fixed;
+        bottom: 3vh;
+        left: 62.5%;
+        z-index: 10;
+      }
+
+
+      #cats-link img {
+        width: 4rem;
+      }
+
+      @media (min-width: 768px) {
+        #camera {
+          left: 32.5%;
+        }
+
+        #visitkl-link {
+          left: 47.5%;
+        }
+
+        #cats-link {
+          left: 62.5%;
+        }
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <div id="background"></div>
+    <!-- <canvas id="canvas" style="display:none;"></canvas> -->
+    <a href="camera.html" id="camera">
+      <img src="assets/img/btn-start-ar.png" alt="camera" id="camera-icon">
+    </a>
+
+    <a href="https://visitkl.dbkl.gov.my/" target="_blank" id="visitkl-link">
+      <img src="assets/img/btn-visit-kl.png" alt="download">
+    </a>
+    <a href="https://heyzine.com/flip-book/1eb3cd3638.html" target="_blank" id="cats-link">
+      <img src="assets/img/btn-cats.png" alt="download">
+    </a>
+  </body>
+</html>
