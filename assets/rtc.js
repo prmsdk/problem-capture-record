@@ -75,7 +75,7 @@ const recordVideo = async (mindarThree, videoFile) => {
   // Menggunakan MediaRecorder untuk merekam video dari canvas baru
   const recordedChunks = [];
   const mediaRecorder = new MediaRecorder(combinedStream, { // Menangkap stream dari canvas baru
-    mimeType: 'video/webm; codecs=h264' // Format video yang didukung
+    mimeType: 'video/webm; codecs=vp9' // Format video yang didukung
   });
 
   // Menggunakan RecordRTC untuk merekam video
@@ -93,11 +93,11 @@ const recordVideo = async (mindarThree, videoFile) => {
   };
 
   mediaRecorder.onstop = () => {
-    const blob = new Blob(recordedChunks, { type: 'video/mp4' }); // Membuat blob dari potongan video
+    const blob = new Blob(recordedChunks, { type: 'video/webm' }); // Membuat blob dari potongan video
     const url = URL.createObjectURL(blob); // Membuat URL untuk blob
     const link = document.createElement('a'); // Membuat elemen link untuk mengunduh
     link.href = url;
-    link.download = 'visitkl-video-' + new Date().getTime() + '.mp4'; // Nama file unduhan
+    link.download = 'visitkl-video-' + new Date().getTime() + '.webm'; // Nama file unduhan
     link.click(); // Mengklik link untuk mengunduh
   };
 
